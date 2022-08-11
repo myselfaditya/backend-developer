@@ -70,4 +70,106 @@ router.post("/test-post-4", function(req, res) {
     res.send(  { msg: arr , status: true }  )
 })
 
+// assignment post request - player
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+
+router.post("/players", function (req, res) {
+    let PlayersName = req.body.name
+    let isNameRepeated = false
+
+  for(let i=0;i<players.length;i++){
+  if(players[i].name==PlayersName){
+      isNameRepeated=true
+      break
+  }
+  }
+  if(isNameRepeated){
+     res.send("player exists already")
+  }else{
+    console.log(req.body)
+    players.push(req.body)
+    res.send(players)
+  }
+})
+
+
+//Post API Assignment 2
+
+let persons =[
+    {
+        name: "PK",
+        age: 10,
+        votingStatus: false
+        
+    },
+    {
+        name: "SK",
+        age: 20,
+        votingStatus: false
+        
+    },
+    {
+        name: "AA",
+        age: 70,
+        votingStatus: false
+        
+    },
+    {
+        name: "SC",
+        age: 5,
+        votingStatus: false
+        
+    },
+    {
+        name: "HO",
+        age: 40,
+        votingStatus: false
+        
+    }
+]
+
+router.post('/voting_persion',function(req,res){
+    let input=req.query
+    let vage=input.age
+    let filterPersions=[]
+    for(let i in persons){
+        if(persons[i].age>vage){
+            persons[i].votingStatus=true
+            filterPersions.push(persons[i])
+        }
+    }
+    res.send({  data:filterPersions,status:true})
+})
+
+
 module.exports = router;
