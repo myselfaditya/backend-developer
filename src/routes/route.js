@@ -12,8 +12,14 @@ router.post("/createUser", UserController.createUser  )
 
 router.get("/getUsersData", UserController.getUsersData)
 
+//session/mongo-session2-part2
 router.post("/createBook", BookController.createBook  )
+//router.get("/getBooksData", BookController.getBooksData)
+router.get("/booksList", BookController.booksList)
+router.post("/getBookInYear", BookController.getBookInYear)
+router.get("/getXINRBooks", BookController.getXINRBooks)
+router.get("/getRandomBooks", BookController.getRandomBooks)
+router.get("/getParticularBooks", BookController.getParticularBooks)
 
-router.get("/getBooksData", BookController.getBooksData)
 
 module.exports = router;
