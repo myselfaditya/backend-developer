@@ -4,11 +4,24 @@ const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
 
+const moment = require('moment')
+const time = moment()
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(
+    function(req,res,next){
+        console.log('Global middleware is On')
+        console.log(time.format('YYYY,MM,DD'))
+        console.log(time.format('h:mm:ss'))
+        console.log(req.ip)
+        console.log(req.originalUrl)
+        next()
+    }
+)
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://iamaditya:gbCsJkKLQc8U2oyp@cluster0.brptf5o.mongodb.net/Middleware_DB?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
