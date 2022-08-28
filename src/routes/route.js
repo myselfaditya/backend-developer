@@ -11,9 +11,9 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post("/createUser", UserController.createUser)
+router.post("/createUser", commonMW.mid1, UserController.createUser)
 router.post("/createProduct", productController.createProduct)
-router.post("/createOrder",commonMW.mid2, orderController.createOrder)
+router.post("/createOrder",commonMW.mid2, commonMW.mid3, orderController.createOrder)
 
 
 router.post("/createBook", BookController.createBook)
