@@ -30,3 +30,5 @@ const authorise = function (req, res, next) {
         next()
 }
 
+module.exports.authenticate = authenticate;
+module.exports.authorise = authorise;
