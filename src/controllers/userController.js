@@ -67,11 +67,6 @@ const getUserData = async function (req, res) {
 };
 
 const updateUser = async function (req, res) {
-// Do the same steps here:
-// Check if the token is present
-// Check if the token present is a valid token
-// Return a different error message in both these cases
-
   let userId = req.params.userId;
   let user = await userModel.findById(userId);
   //Return an error if no user with the given id exists in the db
@@ -80,9 +75,9 @@ const updateUser = async function (req, res) {
   }
 
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, {new: true});
   res.send({ status: updatedUser, data: updatedUser });
-};
+}
 
 const postMessage = async function (req, res) {
     let message = req.body.message
@@ -115,8 +110,19 @@ const postMessage = async function (req, res) {
     return res.send({status: true, data: updatedUser})
 }
 
+const deleteUser = async function(req, res) {    
+  let userId = req.params.userId
+  let user = await userModel.findById(userId)
+  if(!user) {
+      return res.send({status: false, message: "no such user exists"})
+  }
+  let updatedUser = await userModel.findOneAndUpdate({_id: userId}, {isDeleted: true}, {new: true})
+  res.send({status: true, data: updatedUser})
+}
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
-module.exports.postMessage = postMessage
+module.exports.deleteUser = deleteUser
+
