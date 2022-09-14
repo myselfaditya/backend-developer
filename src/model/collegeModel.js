@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
 const collageSchema = new mongoose.Schema({
-
-
     name: {
         type: String,
         require: true,
         unique: true,
         trim: true
     },
-
     fullName: {
         type: String,
         require: true,
@@ -20,7 +17,7 @@ const collageSchema = new mongoose.Schema({
         trim: true
 
     },
-    idDeleted: {
+    isDeleted: {
         type: Boolean,
         default: false
     }
