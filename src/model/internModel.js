@@ -15,7 +15,7 @@ const InternSchema = new mongoose.Schema(
       unique: true,
     },
     mobile: {
-      type: String,
+      type: Number,
       required: true,
       unique:true,
       trim:true,
@@ -25,7 +25,7 @@ const InternSchema = new mongoose.Schema(
             ref: "College",
             required: true,
             isDeleted: {
-                        type:boolean, 
+                        type:Boolean, 
                         default: false
                        }
           }
