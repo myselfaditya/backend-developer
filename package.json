@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Amitkm997/project-1-intern#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mongoose": "^6.6.0",
+    "nodemon": "^2.0.19"
   }
 }
