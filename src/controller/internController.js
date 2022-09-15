@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const createIntern = async function (req, res) {
     try {
         data = req.body
-        let { name, mobile, email, collegeName,isDeleted} = data
+        let { name, mobile, email, collegeName} = data
 
         // var isValidData = function (data) {
         //     return Object.keys(data).length > 0;
@@ -18,14 +18,6 @@ const createIntern = async function (req, res) {
         if (!mobile) { return res.status(400).send({ status: false, msg: "mobile no. is mandatory" }) }
 
         if (!email) { return res.status(400).send({ status: false, msg: "email is mandatory" }) }
-
-        
-        // if (!collegeName) return res.status(400).send({ status: false, messege: "please provide college Name" })
-        // const saveData = await collegeModel.findOne({ name: collegeName });
-        
-        //   collegeId=saveData._id
-
-
         
 
         //-------mobile validation-------------//
@@ -44,27 +36,25 @@ const createIntern = async function (req, res) {
         if (uniqueEmail) {
             return res.status(400).send({ staus: false, msg: "email already exist " })
         }
-
-        // if (collegeId) {
-        //     if (!mongoose.isValidObjectId(collegeId)) { return res.status(400).send({ status: false, msg: "collegeId is not in format" }) }
-        //     else {
-        //         if (!await collegeModel.findById(collegeId)) {
-        //             return res.status(400).send({ status: false, msg: "collegeId is not valid" })
-        //         }
-        //     }
-        // }
         let iscollegeId = await collegeModel.findOne({ name:collegeName }).select({ _id: 1 });
     if (!iscollegeId) {
       return res.status(400).send({ status: false, message: "college name is not exist" });
     }
     let id = iscollegeId._id.toString()
+    console.log(id)
     data.collegeId = id
-    if (isDeleted == true) {
-      res.status(400).send({ status: false, message: "Cannot input isDeleted as true while registering" });
-      return;
-    }
+    // if (isDeleted == true) {
+    //   res.status(400).send({ status: false, message: "Cannot input isDeleted as true while registering" });
+    //   return;
+    // }
+
+    //data.isDeleted=isDeleted
+   
 
         const createData = await internModel.create(data)
+    // const {name,email,mobile,collegeId} = createData
+    //    const {isDeleted,name,email,mobile,id}=createData
+    //    const output={isDeleted,name,email,mobile,id}
         return res.status(201).send({ status: true, data: createData });
 
     } catch (err) {

@@ -17,20 +17,19 @@ const InternSchema = new mongoose.Schema(
     mobile: {
       type: Number,
       required: true,
-      unique:true,
-      trim:true,
+      unique: true,
+      trim: true,
     },
-    collegeId:{
-            type: objectId,
-            ref: "College",
-            required: true,
-            isDeleted: {
-                        type:Boolean, 
-                        default: false
-                       }
-          }
-    
+    collegeId: {
+      type: objectId,
+      ref: "College",
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    }
   },
-  { timestamps: true }
+
+  { timestamps: false }
 );
 module.exports = mongoose.model("Intern", InternSchema);
