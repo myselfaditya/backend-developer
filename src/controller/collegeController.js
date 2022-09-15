@@ -37,8 +37,3 @@ const createCollege=async function(req,res){
 }
 
 module.exports.createCollege=createCollege;
-
-
-
-// { name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, 
-// logoLink: {mandatory}, isDeleted: {boolean, default: false} }
