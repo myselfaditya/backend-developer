@@ -55,14 +55,22 @@ const createIntern = async function (req, res) {
     }
 }
 //========================getDetails===================================
-
-const getIntership = async function (req, res) {
-    const collegeName = req.query.name
-    const saveData = await collegeModel.find({ name: collegeName })
-    if (!saveData) res.status(400).send({ status: false, messege: "No college appears with this college name" });
-    console.log(data._id)
+const getIntership=async function(req,res){
+    const collegeName=req.query.name
+    const saveData=await collegeModel.findOne({name:collegeName});
+    
+    if(!saveData) res.status(400).send({status:false,messege:"No college appears with this college name"});
+    // let collegeId=saveData[0]._id.toString();
+    // console.log(collegeId);
+    const interns=await internModel.find({collegeId:saveData._id}).select({name:1,email:1,mobile:1})
     // const data=await internModel.find(data._id);
-    return res.send({ status: true, data: savedData });
+    const data = {
+        name: saveData.name,
+        fullName: saveData.fullName,
+        logoLink: saveData.logoLink,
+        interns: interns.length==0 ? "No such Intern" : interns
+      };
+    return res.status(200).send({status:true,data:data});
 }
 
 //const regex= 
