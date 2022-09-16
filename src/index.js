@@ -20,6 +20,13 @@ mongoose
 
 app.use("/", route);
 
+//params validation
+app.use(function (req, res) {
+  var err = new Error('Not Found');
+  return res.status(400).send({status : false, msg : "path not found"})
+  });
+
+
 app.listen(process.env.PORT || 3000, function () {
   console.log("Express app running on port " + (process.env.PORT || 3000));
 });
