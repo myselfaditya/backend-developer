@@ -11,6 +11,7 @@ const isValid = function (value) {
 //--------------------------create Intern--------------------------//
 
 const createIntern = async function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*')
     try {
         data = req.body
         let { name, mobile, email, collegeName, isDeleted } = data
@@ -61,6 +62,7 @@ const createIntern = async function (req, res) {
 }
 //========================getDetails===================================
 const getIntership = async function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*')
     try {
         const collegeName = req.query.collegeName
         if (!isValid(collegeName)) return res.status(400).send({ status: false, messege: "please provide college Name" })
