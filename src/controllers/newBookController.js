@@ -25,7 +25,6 @@ let newCreateBook = async function (req, res) {
 
                 }
             });
-
         }
     });
     // when wrong id got send messege acording the invalid
@@ -52,7 +51,6 @@ const updateValue = async function (req, res) {
 const updatePrice = async function (req, res) {
     const data = await newAuthor.find({rating:{$gt:3.5}}).select({_id:1})
     const update=await bookModel.updateMany({author_id:data},{$inc:{price:+10}},{new:true})
-
     res.send(update);
 }
 
