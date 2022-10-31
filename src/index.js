@@ -21,6 +21,26 @@ app.use(
     }
 )
 
+//create a middleware using app.use(functionName) so that this piece of code gets called everytime any api is called
+ 
+// const assignmentMW= function (req, res, next) {
+//     var currentdate = new Date(); 
+//     var datetime =  currentdate.getDate() + " "
+//                     + (currentdate.getMonth()+1)  + " " 
+//                     + currentdate.getFullYear() + "  "  
+//                     + currentdate.getHours() + ":"  
+//                     + currentdate.getMinutes() + ":" 
+//                     + currentdate.getSeconds();
+ 
+//     let ip= req.ip
+//     let url= req.originalUrl
+//     console.log(`${datetime}  ${ip}  ${url}`)
+//     next()    
+// }
+ 
+// app.use( assignmentMW )
+
+
 mongoose.connect("mongodb+srv://iamaditya:gbCsJkKLQc8U2oyp@cluster0.brptf5o.mongodb.net/Middleware_DB?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
